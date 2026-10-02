@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create - BuildMyPortfolio</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/templates.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body>
+<div class="builder-layout">
+  <div class="form-panel">
+    <div class="logo" style="text-align:center; width:100%; margin: 10px 0;"><h1>TEO</h1></div>
+    <h2>Build CV</h2>
+    <div class="steps">Step <span id="stepNum">1</span> / 6</div>
+
+    <div class="form-step active" id="step1">
+      <h3>👤 Personal + Photo</h3>
+      <label>Upload Photo (optional - leave empty if you don't want photo)</label>
+      <input type="file" id="photoUpload" accept="image/*" onchange="handlePhoto(event)">
+      <div id="photoPreviewSmall" style="display:none;margin:10px 0"><img id="smallImg" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid #111"></div>
+      <input id="firstName" placeholder="First Name" oninput="saveAndPreview()">
+      <input id="lastName" placeholder="Last Name" oninput="saveAndPreview()">
+      <input id="title" placeholder="Title" oninput="saveAndPreview()">
+      <input id="location" placeholder="Location" oninput="saveAndPreview()">
+      <input id="email" placeholder="Email" oninput="saveAndPreview()">
+      <input id="phone" placeholder="Phone" oninput="saveAndPreview()">
+      <input id="linkedin" placeholder="LinkedIn" oninput="saveAndPreview()">
+      <input id="github" placeholder="GitHub" oninput="saveAndPreview()">
+    </div>
+
+    <div class="form-step" id="step2">
+      <h3>🎯 About</h3>
+      <input id="q1" placeholder="Currently doing" oninput="saveAndPreview()">
+      <input id="q2" placeholder="Interests" oninput="saveAndPreview()">
+      <input id="q3" placeholder="Goals" oninput="saveAndPreview()">
+      <textarea id="bio" placeholder="Short bio" oninput="saveAndPreview()"></textarea>
+    </div>
+
+    <div class="form-step" id="step3">
+      <h3>🎓 Education</h3>
+      <input id="eduInstitution" placeholder="Institution" oninput="saveAndPreview()">
+      <input id="eduQual" placeholder="Qualification" oninput="saveAndPreview()">
+      <input id="eduYear" placeholder="Year" oninput="saveAndPreview()">
+      <textarea id="eduAch" placeholder="Achievements" oninput="saveAndPreview()"></textarea>
+    </div>
+
+    <div class="form-step" id="step4">
+      <h3>🛠️ Skills (comma separated)</h3>
+      <textarea id="skills" placeholder="HTML, CSS, JS, C#, SQL, Python, Git" oninput="saveAndPreview()"></textarea>
+    </div>
+
+    <div class="form-step" id="step5">
+      <h3>🚀 Projects</h3>
+      <input id="proj1Name" placeholder="Project 1 Name" oninput="saveAndPreview()">
+      <textarea id="proj1Desc" placeholder="Description" oninput="saveAndPreview()"></textarea>
+      <input id="proj1Tech" placeholder="Tech" oninput="saveAndPreview()">
+      <input id="proj1Link" placeholder="Link" oninput="saveAndPreview()">
+      <input id="proj2Name" placeholder="Project 2 Name (optional)" oninput="saveAndPreview()" style="margin-top:15px">
+      <textarea id="proj2Desc" placeholder="Description" oninput="saveAndPreview()"></textarea>
+      <input id="proj2Tech" placeholder="Tech" oninput="saveAndPreview()">
+    </div>
+
+    <div class="form-step" id="step6">
+      <h3>🎨 12 Themes - Choose</h3>
+      <div class="template-grid">
+        <div class="tpl t-pink" onclick="setTemplate('pink')"><b>1 Pink Blush</b><span>2-col sidebar pink</span></div>
+        <div class="tpl t-blue" onclick="setTemplate('blue')"><b>2 Blue Ocean</b><span>sidebar blue</span></div>
+        <div class="tpl t-purple" onclick="setTemplate('purple')"><b>3 Purple Dream</b><span>gradient header</span></div>
+        <div class="tpl t-green" onclick="setTemplate('green')"><b>4 Mint Green</b><span>top photo centered</span></div>
+        <div class="tpl t-orange" onclick="setTemplate('orange')"><b>5 Sunset Orange</b><span>right sidebar</span></div>
+        <div class="tpl t-dark" onclick="setTemplate('dark')"><b>6 Dark Pro</b><span>developer dark</span></div>
+        <div class="tpl t-sky" onclick="setTemplate('sky')"><b>7 Sky Light Blue</b><span>clean light blue</span></div>
+        <div class="tpl t-yellow" onclick="setTemplate('yellow')"><b>8 Lemon Yellow</b><span>bold yellow header</span></div>
+        <div class="tpl t-red" onclick="setTemplate('red')"><b>9 Crimson Red</b><span>elegant red</span></div>
+        <div class="tpl t-teal" onclick="setTemplate('teal')"><b>10 Teal Fresh</b><span>2-col teal</span></div>
+        <div class="tpl t-beige" onclick="setTemplate('beige')"><b>11 Sand Beige</b><span>minimal serif</span></div>
+        <div class="tpl t-gray" onclick="setTemplate('gray')"><b>12 Corporate Gray</b><span>pro columns</span></div>
+      </div>
+      <div class="download-area">
+        <button class="btn-primary" onclick="downloadPDF()">📄 Download PDF</button>
+        <button class="btn-primary" style="background:#111" onclick="downloadZIP()">🌐 Download Website ZIP</button>
+      </div>
+    </div>
+
+    <div class="nav-btns"><button onclick="prevStep()" class="btn-ghost">Back</button><button onclick="nextStep()" class="btn-primary">Next</button></div>
+  </div>
+  <div class="preview-panel">
+    <div class="preview-toolbar">LIVE - <span id="currentTpl">pink</span> - 12 themes</div>
+    <div id="livePreview" class="preview-content template-pink"></div>
+  </div>
+</div>
+<script src="js/templates.js"></script>
+<script src="js/app.js"></script>
+<script src="js/generator.js"></script>
+</body>
+</html>

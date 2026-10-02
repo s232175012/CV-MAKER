@@ -1,0 +1,90 @@
+*{box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
+body{margin:0;background:#fafafa;color:#111}
+/* HOME */
+.home-hero{max-width:1000px;margin:60px auto;text-align:center;padding:20px}
+.home-hero h1{font-size:48px;margin:0 0 10px}
+.home-hero h1 span{color: #991b1b; font-style: italic;}
+/* Center TEO logo */
+.logo{
+  text-align: center;
+  width: 100%;
+  display: block;
+  margin-left: 0;
+  margin-right: 0;
+  color: #991b1b;
+  background-color: #2a2929;
+  font-style: italic;
+}
+.home-hero p{color:#666;font-size:18px}
+.btn-primary{background:#111;color:white;padding:14px 28px;border-radius:10px;text-decoration:none;display:inline-block;border:none;cursor:pointer;font-weight:600}
+.btn-secondary{border:1px solid #ddd;padding:14px 28px;border-radius:10px;text-decoration:none;display:inline-block;margin-left:10px;color:#111}
+.examples{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:40px}
+.t-pink:hover, .t-beige:hover, .t-blue:hover, .t-dark:hover, .t-gray:hover, .t-green:hover, .t-orange:hover, .t-purple:hover, .t-red:hover, .t-sky:hover, .t-teal:hover, .t-yellow:hover{border:2px solid red}
+.example-card{height:110px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+.t-pink{background:#fff1f2;color:#be185d}.t-blue{background:#1e40af;color:black}.t-purple{background:linear-gradient(135deg,#7c3aed,#ec4899);color:black}.t-green{background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0}.t-orange{background:#fff7ed;color:#9a3412}.t-dark{background:#111;color:#22c55e}.t-sky{background:#f0f9ff;color:#0284c7}.t-yellow{background:#facc15;color:#422006}.t-red{background:#991b1b;color:black}.t-teal{background:#134e4a;color:black}.t-beige{background:#fdfbf7;color:#57534e;border:1px solid #e7d5b5}.t-gray{background:#1e293b;color:black}
+
+/* BUILDER */
+.builder-layout{display:grid;grid-template-columns:420px 1fr;height:100vh}
+.form-panel{background:#fff;padding:22px;overflow-y:auto;border-right:1px solid #eee}
+.form-step{display:none}.form-step.active{display:block}
+.form-panel input,.form-panel textarea{width:100%;padding:11px;margin:6px 0;border:1px solid #ddd;border-radius:8px;font-size:14px}
+.form-panel label{font-size:11px;font-weight:700;color:#777;text-transform:uppercase;margin-top:8px;display:block}
+.template-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;max-height:420px;overflow-y:auto;padding-right:5px}
+.tpl{border:2px solid #eee;padding:11px;border-radius:10px;cursor:pointer;transition:.2s}
+.tpl:hover{transform:translateY(-2px);box-shadow:0 6px 15px rgba(0,0,0,.07)}
+.tpl b{font-size:12px;display:block}.tpl span{font-size:10px;color:#666}
+.t-pink{background:#fff1f2;border-color:#fecdd3}.t-blue{background:#eff6ff;border-color:#bfdbfe}.t-purple{background:#f5f3ff;border-color:#ddd6fe}.t-green{background:#ecfdf5;border-color:#a7f3d0}.t-orange{background:#fff7ed;border-color:#fed7aa}.t-dark{background:#111;color:#fff;border-color:#333}.t-sky{background:#f0f9ff;border-color:#bae6fd}.t-yellow{background:#fefce8;border-color:#fde68a}.t-red{background:#fef2f2;border-color:#fecaca}.t-teal{background:#f0fdfa;border-color:#99f6e0}.t-beige{background:#fdfbf7;border-color:#e7d5b5}.t-gray{background:#f8fafc;border-color:#cbd5e1}
+.btn-ghost{background:#fff;border:1px solid #ddd;padding:10px 16px;border-radius:10px;cursor:pointer}
+.nav-btns{display:flex;justify-content:space-between;margin-top:18px}
+.download-area{display:grid;gap:8px;margin-top:18px}
+.preview-panel{background:#e5e7eb;overflow-y:auto}
+.preview-toolbar{background:#111;color:#fff;padding:10px 14px;font-size:12px;position:sticky;top:0;z-index:5}
+.preview-content{background:#fff;min-height:95%;margin:12px;box-shadow:0 20px 40px rgba(0,0,0,.15);overflow:hidden}
+/* --- MOBILE RESPONSIVE - Preview stacks, PDF stays PC --- */
+@media(max-width: 900px){
+  .builder-layout{
+    grid-template-columns: 1fr;
+    height:auto;
+  }
+  .form-panel{
+    order:2;
+  }
+  .preview-panel{
+    order:1;
+    min-height:600px;
+  }
+  .preview-content{
+    margin:0;
+  }
+  /* Stack all 2-col templates to 1 col on mobile for viewing */
+  .template-pink,
+  .template-blue,
+  .template-sky,
+  .template-teal,
+  .template-orange,
+  .template-gray .head,
+  .template-gray .body,
+  .template-purple .body,
+  .template-yellow .body{
+    grid-template-columns: 1fr !important;
+  }
+  .template-orange .right{
+    border-left:none;
+    border-top:2px dashed #fed7aa;
+  }
+  .template-red .head,
+  .template-yellow .head div,
+  .template-dark div[style*="display:flex"]{
+    flex-direction:column;
+    text-align:center;
+  }
+  .template-beige div[style*="grid-template-columns:1fr 1fr"]{
+    grid-template-columns:1fr !important;
+  }
+  .examples{
+    grid-template-columns:1fr 1fr;
+  }
+  .home-hero h1{
+    font-size:32px;
+  }
+}
